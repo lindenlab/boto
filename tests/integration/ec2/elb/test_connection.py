@@ -55,7 +55,7 @@ class ELBConnectionTest(unittest.TestCase):
         c = ELBConnection()
         name = 'elb-boto-unit-test'
         availability_zones = ['us-east-1a']
-        listeners = [(80, 8000, 'HTTP')]
+        listeners = [(80, 8000, 'HTTP', 'HTTP', None)]
         balancer = c.create_load_balancer(name, availability_zones, listeners)
         self.assertEqual(balancer.name, name)
         self.assertEqual(balancer.availability_zones, availability_zones)
@@ -68,10 +68,10 @@ class ELBConnectionTest(unittest.TestCase):
         c = ELBConnection()
         name = 'elb-boto-unit-test'
         availability_zones = ['us-east-1a']
-        listeners = [(80, 8000, 'HTTP')]
+        listeners = [(80, 8000, 'HTTP', 'HTTP', None)]
         balancer = c.create_load_balancer(name, availability_zones, listeners)
 
-        more_listeners = [(443, 8001, 'HTTP')]
+        more_listeners = [(443, 8001, 'HTTP', 'HTTP', None)]
         c.create_load_balancer_listeners(name, more_listeners)
         balancers = c.get_all_load_balancers()
         self.assertEqual([lb.name for lb in balancers], [name])
@@ -84,7 +84,7 @@ class ELBConnectionTest(unittest.TestCase):
         c = ELBConnection()
         name = 'elb-boto-unit-test'
         availability_zones = ['us-east-1a']
-        listeners = [(80, 8000, 'HTTP'), (443, 8001, 'HTTP')]
+        listeners = [(80, 8000, 'HTTP', 'HTTP', None), (443, 8001, 'HTTP', 'HTTP', None)]
         balancer = c.create_load_balancer(name, availability_zones, listeners)
 
         balancers = c.get_all_load_balancers()
