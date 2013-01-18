@@ -1,0 +1,3 @@
+version=3
+http://code.google.com/p/boto/ \
+  http://boto.googlecode.com/files/boto-(.+).tar.gz
